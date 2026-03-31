@@ -1,1 +1,17 @@
-
+{
+"name": "CopySQLtoDataLake",
+"properties": {
+"activities": [
+{
+"name": "CopyOrders",
+"type": "Copy",
+"inputs": [{"referenceName": "SQLOrders"}],
+"outputs": [{"referenceName": "ADLSOrders"}],
+"typeProperties": {
+"source": {"type": "SqlSource"},
+"sink": {"type": "ParquetSink"}
+}
+}
+]
+}
+}
