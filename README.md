@@ -1,84 +1,40 @@
 # Azure Data Factory ELT Pipeline
 
-SQL Database → Azure Data Factory → ADLS Gen2 → Databricks → Delta Lake
+SQL Database → ADLS → Databricks → Delta Lake
 
 ## Overview
 
-This project demonstrates an end-to-end **ELT data pipeline on Azure**.
-Data is extracted from a SQL database, loaded into **Azure Data Lake Storage Gen2** using **Azure Data Factory**, and transformed in **Azure Databricks** using PySpark. The final aggregated data is stored in **Delta Lake** for analytics and reporting.
+This project demonstrates a cloud-based ELT pipeline built using Azure services. Data is extracted from a SQL database, loaded into Azure Data Lake Storage using Azure Data Factory, and transformed in Azure Databricks using PySpark.
+
+The processed data is stored in Delta Lake tables for analytics and reporting.
 
 ## Architecture
 
 SQL Database
 → Azure Data Factory Pipeline
-→ Azure Data Lake Storage Gen2 (Raw Data)
-→ Azure Databricks (PySpark Transformations)
-→ Delta Lake (Gold Layer)
+→ Azure Data Lake Storage Gen2
+→ Azure Databricks
+→ Delta Lake
 
 ## Tech Stack
 
-* Azure Data Factory
-* Azure Data Lake Storage Gen2
-* Azure Databricks
-* PySpark
-* Delta Lake
-* SQL
+Azure Data Factory
+Azure Data Lake Storage Gen2
+Azure Databricks
+PySpark
+Delta Lake
+SQL
 
-## Repository Structure
+## Pipeline Workflow
 
-```
-azure-adf-databricks-elt-pipeline
-│
-├── adf_pipeline
-│   └── pipeline.json
-├── databricks_notebooks
-│   └── transform_data.py
-├── sql_scripts
-│   └── source_tables.sql
-├── datasets
-│   └── orders_sample.csv
-├── delta_tables
-│   └── gold_tables.sql
-└── README.md
-```
-
-## Dataset
-
-The project uses a sample **e-commerce orders dataset** containing:
-
-* order_id
-* customer_id
-* product
-* order_amount
-* order_date
-
-Only a small sample dataset is included in the repository.
-
-## Transformation Logic
-
-The Databricks job reads raw order data from the data lake and calculates **total sales per customer**.
-
-Example transformation:
-
-```python
-customer_sales = df.groupBy("customer_id").sum("order_amount")
-```
-
-The result is stored in a **Delta Lake table** for downstream analytics.
-
-## Example Output
-
-| customer_id | total_sales |
-| ----------- | ----------- |
-| 501         | 1500        |
-| 502         | 170         |
-| 503         | 25          |
+1. Orders data is stored in a SQL database.
+2. Azure Data Factory copies data into Azure Data Lake Storage.
+3. Databricks reads raw data from the data lake.
+4. PySpark transformations aggregate customer sales.
+5. Results are stored in Delta Lake tables.
 
 ## Use Cases
 
-This architecture is commonly used for:
-
-* building cloud data lakes
-* ELT pipelines in Azure
-* enterprise analytics platforms
-* BI and reporting pipelines
+Cloud data lake ingestion pipelines
+Retail analytics platforms
+Azure-based ELT architectures
