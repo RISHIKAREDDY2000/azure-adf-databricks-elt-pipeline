@@ -1,0 +1,17 @@
+## Overview
+
+This project demonstrates an Azure ELT pipeline using Azure Data Factory and Databricks.
+
+The pipeline extracts data from a SQL database, loads it into Azure Data Lake Storage Gen2, and performs transformations in Databricks before storing the results in Delta Lake.
+
+## Architecture
+
+SQL Database → Azure Data Factory → ADLS Gen2 → Databricks → Delta Lake
+
+## Technologies
+
+Azure Data Factory  
+Azure Data Lake Storage Gen2  
+Databricks  
+PySpark  
+Delta Lake
